@@ -1,2 +1,2 @@
 # Portfolio-projects
-This repository contains different projects that I'm interested in personally, which would be mainly related to healthcare unless otherwise stated. The projects will be done by using Python and/or SQL at this stage (unless I've decided to pick up another programming language such as R in the future).
+This repository contains different projects that I'm interested in personally, which would be mainly related to healthcare or pharmaceuticals. The projects would be done by using Python and/or SQL mainly at this stage as I'd like to concentrate on both for now (Tableau project was also in the pipeline - available on Tableau Public). 

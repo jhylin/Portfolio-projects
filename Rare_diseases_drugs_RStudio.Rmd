@@ -1,0 +1,35 @@
+
+```{r}
+library(tidyverse)
+```
+```{r}
+df <- read_csv("Rare_diseases.csv")
+```
+```{r}
+spec(df)
+```
+```{r}
+df %>% View()
+```
+#Check the full view of the dataset
+```{r}
+select(df, `Generic Name`, `Trade Name`, `Date Designated`, `Orphan Designation`, `Approved Labeled Indication`, `Marketing Approval Date`, `Exclusivity Protected Indication * (Shown for approvals from Jan. 1, 2013, to the present)`, `Sponsor Country`)
+```
+```{r}
+df %>% count(`Sponsor Country`)
+```
+```{r}
+df1 = df %>% slice(-c(1058))
+```
+```{r}
+df1 %>% count(`Sponsor Country`)
+```
+#Checked last row (index 1058) was only a caption for exclusivity period, so this was omitted from the selection
+#Count the number of sponsor countries involved again in rare disease drug developments (to remove last NA entry)
+```{r}
+ggplot(data = df1) +
+  geom_bar(mapping = aes(x = `Sponsor Country`, fill = `Sponsor Country`)) +
+  labs(title = "Countries involved in developing rare disease drugs", caption = "Dataset from US FDA: https://www.accessdata.fda.gov/scripts/opdlisting/oopd/index.cfm (last accessed: 1/7/2022)") +
+  coord_flip()
+```
+#Plotting horizontal bar graph to show countries involved in rare disease drug developments (by counts)

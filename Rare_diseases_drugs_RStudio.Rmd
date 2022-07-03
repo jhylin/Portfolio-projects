@@ -1,9 +1,8 @@
-
 ```{r}
 library(tidyverse)
 ```
 ```{r}
-df <- read_csv("Rare_diseases.csv")
+df <- read_csv("Rare_diseases_drugs_FDA.csv")
 ```
 ```{r}
 spec(df)

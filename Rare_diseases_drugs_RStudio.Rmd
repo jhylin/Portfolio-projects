@@ -81,5 +81,14 @@ df_ir
 ```{r}
 gg_vistime(df_ir, col.event = "Trade Name", col.group = "Generic Name", col.start = "Date Designated", col.end = "Marketing Approval Date", title = "Timeline from designation to marketing approval")
 ```
-
 #Plot timeline for rare disease drugs limited to the ones with exclusivity end date after 2022 from Ireland only
+```{r}
+df_us <- df %>%
+  mutate(`Exclusivity End Date` = mdy(`Exclusivity End Date`), `Date Designated` = mdy(`Date Designated`), `Marketing Approval Date` = mdy(`Marketing Approval Date`)) %>%
+  filter(year(`Exclusivity End Date`) == 2022, month(`Exclusivity End Date`) >= 1, month(`Exclusivity End Date`) < 7, `Sponsor Country` == "United States")
+df_us
+```
+```{r}
+gg_vistime(df_us, col.event = "Trade Name", col.group = "Generic Name", col.start = "Date Designated", col.end = "Marketing Approval Date", title = "Timeline from designation to marketing approval")
+```
+#Limiting rare disease drugs from US with exclusivity end date from January to June 2022 only (shown in a timeline)

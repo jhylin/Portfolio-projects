@@ -12,7 +12,7 @@ This work was inspired by Data Is Plural website [link](https://www.data-is-plur
 Future work may evolve from this initial part and perhaps grow further as I'm slowly working on other data available from Orphanet, which is dedicated to data relevant to rare diseases. Somehow this draws my interests currently.
 
 Read .csv file firstly to import the data set.
-```{r echo=TRUE}
+```{r echo=TRUE, message=FALSE}
 library(tidyverse)
 ```
 ```{r}
@@ -62,7 +62,7 @@ df_uk <- df %>%
 df_uk
 ```
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, message=FALSE}
 install.packages("vistime")
 ```
 
@@ -93,7 +93,7 @@ Its timeline is shown below with the same idea of starting from the date of desi
 * years on x-axis
 * generic names on y-axis 
 * trade names on top of timeline bars
-```{r}
+```{r warning=FALSE}
 gg_vistime(df_ir, col.event = "Trade Name", col.group = "Generic Name", col.start = "Date Designated", col.end = "Marketing Approval Date", title = "Timeline from designation to marketing approval")
 ```
 
@@ -112,7 +112,7 @@ The timeline for this particular set of rare disease drugs from the US is shown 
 * years on x-axis
 * generic names on y-axis 
 * trade names on top of timeline bars
-```{r}
+```{r warning=FALSE}
 gg_vistime(df_us, col.event = "Trade Name", col.group = "Generic Name", col.start = "Date Designated", col.end = "Marketing Approval Date", title = "Timeline from designation to marketing approval")
 ```
 ```{r echo=FALSE}

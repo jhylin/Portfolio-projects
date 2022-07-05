@@ -1,4 +1,8 @@
 # Portfolio-projects
-This repository contains different healthcare and pharmaceutical-related projects of personal interests. All of the projects are mainly done by using Python and SQL, with a little bit of R for now (mainly base R methods initially, until I dive into other R packages in the future).
+This repository contains different healthcare and pharmaceutical-related projects of personal interests. 
 
-Tableau project is available on: https://public.tableau.com/app/profile/jennifer.hy.lin/viz/CharacterisinglongCOVID/Riskfactorswithclinicalassociations (in case this may be of interests to anyone)
+All of the projects are done by using Python (via Anaconda), SQL (via DBeaver on MySQL server), and also R (via RStudio), which is another programming language I've derived recently and hoping to continue to improve on (actually this also applies to Python and SQL as well).
+
+There is also a Tableau project that is available on: https://public.tableau.com/app/profile/jennifer.hy.lin/viz/CharacterisinglongCOVID/Riskfactorswithclinicalassociations 
+
+More Tableau projects may be coming in the future, depending on where my recent interests in rare diseases will lead me...

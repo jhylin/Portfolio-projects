@@ -1,53 +1,60 @@
-```{r}
+---
+title: "Rare disease drugs from US FDA"
+date: 5-7-2022
+author: "Jennifer HY Lin"
+
+output: html_document
+---
+
+### Why rare disease drugs?
+This work was inspired by Data Is Plural website [link](https://www.data-is-plural.com), which has provided a diverse and dynamic range of data available to the public. I happened to come across it randomly without any specific intentions and rare disease drugs jumped out from all of the data available at the time from the website. Below is an initial dive-in for this particular data set for rare diseases from 1983 till present, which was downloaded from: <https://www.accessdata.fda.gov/scripts/opdlisting/oopd/index.cfm> (last accessed: 1/7/2022)
+
+Future work may evolve from this initial part and perhaps grow further as I'm slowly working on other data available from Orphanet, which is dedicated to data relevant to rare diseases. Somehow this draws my interests currently.
+
+Read .csv file firstly to import the data set.
+```{r echo=TRUE}
 library(tidyverse)
 ```
-
 ```{r}
 df <- read_csv("Rare_diseases_drugs_FDA.csv")
 ```
-
-```{r}
+Inspect all column names in the data set and also open full data set in a table view to observe contents.
+```{r, echo = TRUE}
 spec(df)
 ```
-
 ```{r}
 df %>% View()
 ```
-
-#Check the full view of the dataset
-
+### Data analysis
+After perusing the whole data set, I've decided to focus on selected columns only so that I can concentrate on these data without seeing other minor details at this stage.
 ```{r}
 select(df, `Generic Name`, `Trade Name`, `Date Designated`, `Orphan Designation`, `Approved Labeled Indication`, `Marketing Approval Date`, `Exclusivity Protected Indication * (Shown for approvals from Jan. 1, 2013, to the present)`, `Sponsor Country`)
 ```
-
+I'm interested in finding out what countries were involved in developing rare disease drugs and also how frequently each of these drugs appeared in the data set from 1983 till present. So I've done a simple count() on sponsor country column to see the distributions.
 ```{r}
 df %>% count(`Sponsor Country`)
 ```
-
+I've noticed the last row was actually not a data entry, but rather a caption about exclusivity indication and period so this was removed from the newly created dataframe df1.
 ```{r}
 df1 = df %>% slice(-c(1058))
 ```
-
+Then the count was repeated, which had the last row removed as shown in the table. 
 ```{r}
 df1 %>% count(`Sponsor Country`)
 ```
-
-#Checked last row (index 1058) was only a caption for exclusivity period, so this was omitted from the selection #Count the number of sponsor countries involved again in rare disease drug developments (to remove last NA entry)
-
+A horizontal bar graph was plotted to show countries involved in rare disease drug developments (by counts, which might include duplicates such as different formulations under the same trade names and so on, I've decided to include them all for now). It showed United States had the highest counts of 966, which were followed by Ireland (16), United Kingdom (13) and also other countries that followed.
 ```{r}
 ggplot(data = df1) +
   geom_bar(mapping = aes(x = `Sponsor Country`, fill = `Sponsor Country`)) +
-  labs(title = "Countries involved in developing rare disease drugs", caption = "Dataset from US FDA: https://www.accessdata.fda.gov/scripts/opdlisting/oopd/index.cfm (last accessed: 1/7/2022)") +
+  labs(title = "Countries involved in developing rare disease drugs") +
   coord_flip()
 ```
-
-#Plotting horizontal bar graph to show countries involved in rare disease drug developments (by counts)
-
-```{r}
+```{r echo=TRUE}
 library(lubridate)
 library(dplyr)
 ```
-
+#### Focus on rare disease drugs from UK
+I've then decided to look into rare disease drugs with exclusivity end date after 2022 and also limited the sponsor country to UK only so this was done using filter(). To show this result visually, a timeline was plotted using vistime package (thanks to its creator, Sandro Raabe). The format of the dates in the data set was also changed prior so that the timeline could be plotted.
 ```{r}
 df_uk <- df %>% 
   mutate(`Exclusivity End Date` = mdy(`Exclusivity End Date`), `Date Designated` = mdy(`Date Designated`), `Marketing Approval Date` = mdy(`Marketing Approval Date`)) %>%
@@ -55,40 +62,61 @@ df_uk <- df %>%
 df_uk
 ```
 
-#Filter rare disease drugs with Exclusivity End Date after 2022 & limited to UK as the sponsor country only
-
-```{r}
+```{r setup, include=FALSE}
 install.packages("vistime")
 ```
 
 ```{r}
 library(vistime)
 ```
+The timeline shown starts from the date of designation to marketing approval for all the rare disease drugs under this particular filter.
 
-#Use vistime to plot a timeline for rare disease drugs limited to the ones with exclusivity end date after 2022 from UK only
-
+* years on x-axis
+* generic names on y-axis 
+* trade names on top of timeline bars
 ```{r}
 gg_vistime(df_uk, col.event = "Trade Name", col.group = "Generic Name", col.start = "Date Designated", col.end = "Marketing Approval Date", title = "Timeline from designation to marketing approval")
 ```
+```{r echo=FALSE}
 
+```
+#### Focus on rare disease drugs from Ireland
+For rare diseases drugs from Ireland, I've also changed the date formats and then selected the ones with exclusivity end date after 2022.
 ```{r}
 df_ir <- df %>%
   mutate(`Exclusivity End Date` = mdy(`Exclusivity End Date`), `Date Designated` = mdy(`Date Designated`), `Marketing Approval Date` = mdy(`Marketing Approval Date`)) %>%
   filter(year(`Exclusivity End Date`) > 2022, `Sponsor Country` == "Ireland")
 df_ir
 ```
+Its timeline is shown below with the same idea of starting from the date of designation to marketing approval.
 
+* years on x-axis
+* generic names on y-axis 
+* trade names on top of timeline bars
 ```{r}
 gg_vistime(df_ir, col.event = "Trade Name", col.group = "Generic Name", col.start = "Date Designated", col.end = "Marketing Approval Date", title = "Timeline from designation to marketing approval")
 ```
-#Plot timeline for rare disease drugs limited to the ones with exclusivity end date after 2022 from Ireland only
+
+```{r echo=FALSE}
+```
+#### Focus on rare disease drugs from United States
+Since there are a larger number of rare disease drugs from the US, I've applied a filter to limit to the year of 2022 only and between the months of January to June - to observe the ones that still have exclusivity during this selected period. All date formats were also changed before the timeline was plotted.
 ```{r}
 df_us <- df %>%
   mutate(`Exclusivity End Date` = mdy(`Exclusivity End Date`), `Date Designated` = mdy(`Date Designated`), `Marketing Approval Date` = mdy(`Marketing Approval Date`)) %>%
   filter(year(`Exclusivity End Date`) == 2022, month(`Exclusivity End Date`) >= 1, month(`Exclusivity End Date`) < 7, `Sponsor Country` == "United States")
 df_us
 ```
+The timeline for this particular set of rare disease drugs from the US is shown below.
+
+* years on x-axis
+* generic names on y-axis 
+* trade names on top of timeline bars
 ```{r}
 gg_vistime(df_us, col.event = "Trade Name", col.group = "Generic Name", col.start = "Date Designated", col.end = "Marketing Approval Date", title = "Timeline from designation to marketing approval")
 ```
-#Limiting rare disease drugs from US with exclusivity end date from January to June 2022 only (shown in a timeline)
+```{r echo=FALSE}
+
+```
+### Conclusion
+This short dive-in session on this set of rare disease drugs data has shown that US is still the country that has the most involvement in rare disease drug developments, which is followed by Ireland and the UK, and also a number of other countries. The timelines have also hinted that drug discovery and development is a timely process and it could span many years before a drug actually reaches marketing approval. 

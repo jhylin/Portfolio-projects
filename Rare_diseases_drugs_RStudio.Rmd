@@ -18,7 +18,7 @@ library(tidyverse)
 ```{r}
 df <- read_csv("Rare_diseases_drugs_FDA.csv")
 ```
-Inspect all column names in the data set and also open full data set in a table view to observe contents.
+Inspect all column names in the data set and also open full data set in a separate table view to observe contents.
 ```{r, echo = TRUE}
 spec(df)
 ```

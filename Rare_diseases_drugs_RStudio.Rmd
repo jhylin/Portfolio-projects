@@ -3,7 +3,7 @@ title: "Rare disease drugs from US FDA"
 date: 5-7-2022
 author: "Jennifer HY Lin"
 
-output: html_document
+output: github_document
 ---
 
 ### Why rare disease drugs?

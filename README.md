@@ -5,4 +5,4 @@ All of the projects are done by using Python (via Anaconda), SQL (via DBeaver on
 
 There is also a Tableau project that is available on: https://public.tableau.com/app/profile/jennifer.hy.lin/viz/CharacterisinglongCOVID/Riskfactorswithclinicalassociations 
 
-More Tableau projects may be coming in the future, depending on where my recent interests in rare diseases will lead me...
+More Tableau projects may be coming in the future, depending on where my recent interests in rare diseases will lead me.

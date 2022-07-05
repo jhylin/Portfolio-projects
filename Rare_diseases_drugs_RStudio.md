@@ -41,7 +41,7 @@ df <- read_csv("Rare_diseases_drugs_FDA.csv")
     ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 
 Inspect all column names in the data set and also open full data set in
-a table view to observe contents.
+a separate table view to observe contents.
 
 ``` r
 spec(df)

@@ -179,6 +179,16 @@ changed first, so that the timeline could be plotted.
 
 ``` r
 library(lubridate)
+```
+
+    ## 
+    ## Attaching package: 'lubridate'
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     date, intersect, setdiff, union
+
+``` r
 library(dplyr)
 ```
 
@@ -324,12 +334,16 @@ gg_vistime(df_us, col.event = "Trade Name", col.group = "Generic Name", col.star
 
 ![](Rare_diseases_drugs_RStudio_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
 
-### Conclusion
+### Summary
 
-This short dive-in session on this set of data on rare disease drugs has
-shown that the US is the country that has the most involvement in rare
-disease drug developments, which is followed by Ireland and the UK, and
-also a number of other countries. The timelines have also implied that
-drug discovery and development is a timely process, which could span
-many years (e.g. 10 - 20 years or more) before a drug actually reaches
-marketing approval.
+This short dive-in session on rare disease drugs has shown that: \* US
+is the country that has the most involvement in rare disease drug
+developments, which is followed by Ireland and the UK, and also a number
+of other countries \* More work could possibly go into looking at the
+duplicates of brand names of the same generic drug e.g. cannabidiol with
+trade name as Epidiolex that had 5 repeated timelines shown above, which
+after further check into these entries, there appeared to be different
+clinical indications for each of these entries \* The timelines have
+also implied that drug discovery and development is a very timely
+process, which could span many years, such as 10 - 20 years or more,
+before a drug actually reaches the market for public use

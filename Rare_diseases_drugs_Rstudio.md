@@ -8,17 +8,15 @@ Jennifer HY Lin
 This work was inspired by Data Is Plural website
 [link](https://www.data-is-plural.com), which has provided a diverse and
 dynamic range of data available to the public. I happened to come across
-it randomly without any specific intentions and rare disease drugs
-jumped out from all of the data available at the time from the website.
-Below is an initial dive-in for this particular data set for rare
-diseases from 1983 till present, which was downloaded from:
-<https://www.accessdata.fda.gov/scripts/opdlisting/oopd/index.cfm> (last
-accessed: 1/7/2022)
+it randomly without any intentions and rare disease drugs jumped out
+from all of the data available at the time.
 
-Future work may evolve from this initial part and perhaps grow further
-as I’m slowly working on other data available from Orphanet, which is
-dedicated to data relevant to rare diseases. Somehow this draws my
-interests currently.
+Below is an initial dive-in for this particular data set for rare
+disease drugs from 1983 till present - downloadable from:
+<https://www.accessdata.fda.gov/scripts/opdlisting/oopd/index.cfm> (last
+accessed: 1/7/2022). Future work may evolve from this initial part and
+perhaps grow further as I’m slowly working on other data available from
+Orphanet, a website dedicated to data relevant to rare diseases.
 
 Read .csv file firstly to import the data set.
 
@@ -31,9 +29,9 @@ df <- read_csv("Rare_diseases_drugs_FDA.csv")
 ```
 
     ## Rows: 1058 Columns: 18
-    ## ── Column specification ───────────────────────────────────────────
+    ## ── Column specification ──────────────────────────────────────────────────────────
     ## Delimiter: ","
-    ## chr (16): Generic Name, Trade Name, Date Designated, Orphan Des...
+    ## chr (16): Generic Name, Trade Name, Date Designated, Orphan Designation, Orpha...
     ## dbl  (1): CF Grid Key
     ## lgl  (1): FDA Orphan Approval Status
     ## 
@@ -74,30 +72,28 @@ df %>% View()
 
 ### Data analysis
 
-After perusing the whole data set, I’ve decided to focus on selected
-columns only so that I can concentrate on these data without seeing
-other minor details at this stage.
+After perusing the data set, I’ve decided to focus on selected columns
+only so that I can concentrate on these data without seeing other minor
+details at this stage.
 
 ``` r
 select(df, `Generic Name`, `Trade Name`, `Date Designated`, `Orphan Designation`, `Approved Labeled Indication`, `Marketing Approval Date`, `Exclusivity Protected Indication * (Shown for approvals from Jan. 1, 2013, to the present)`, `Sponsor Country`)
 ```
 
     ## # A tibble: 1,058 × 8
-    ##    `Generic Name`    `Trade Name` `Date Designat…` `Orphan Design…`
-    ##    <chr>             <chr>        <chr>            <chr>           
-    ##  1 bosentan          Tracleer     10/06/00         Treatment of pu…
-    ##  2 bosentan          Tracleer     10/06/00         Treatment of pu…
-    ##  3 (tisagenlecleuce… Kymriah (ti… 01/31/2014       For the treatme…
-    ##  4 5-aminolevulinic… Gleolan      01/15/2013       Visualization o…
-    ##  5 abatacept         Orencia      12/26/2017       Prevention of g…
-    ##  6 acalabrutinib     CALQUENCE    09/21/2015       Treatment of ma…
-    ##  7 acalabrutinib     <NA>         05/13/2015       Treatment of ch…
-    ##  8 acetylcysteine    Acetadote    10/19/2001       For the intrave…
-    ##  9 acetylcysteine e… Cetylev      02/24/2015       Preventing hepa…
-    ## 10 acyclovir         Avaclyr      12/13/2010       Treatment of ac…
-    ## # … with 1,048 more rows, and 4 more variables:
-    ## #   `Approved Labeled Indication` <chr>,
-    ## #   `Marketing Approval Date` <chr>,
+    ##    `Generic Name`  `Trade Name` `Date Designat…` `Orphan Design…` `Approved Labe…`
+    ##    <chr>           <chr>        <chr>            <chr>            <chr>           
+    ##  1 bosentan        Tracleer     10/06/00         Treatment of pu… Treatment of pu…
+    ##  2 bosentan        Tracleer     10/06/00         Treatment of pu… Treatment of pu…
+    ##  3 (tisagenlecleu… Kymriah (ti… 01/31/2014       For the treatme… Treatment of pa…
+    ##  4 5-aminolevulin… Gleolan      01/15/2013       Visualization o… Optical imaging…
+    ##  5 abatacept       Orencia      12/26/2017       Prevention of g… prophylaxis of …
+    ##  6 acalabrutinib   CALQUENCE    09/21/2015       Treatment of ma… treatment of ad…
+    ##  7 acalabrutinib   <NA>         05/13/2015       Treatment of ch… CALQUENCE is in…
+    ##  8 acetylcysteine  Acetadote    10/19/2001       For the intrave… For the use of …
+    ##  9 acetylcysteine… Cetylev      02/24/2015       Preventing hepa… Indicated to pr…
+    ## 10 acyclovir       Avaclyr      12/13/2010       Treatment of ac… AVACLYR is a st…
+    ## # … with 1,048 more rows, and 3 more variables: `Marketing Approval Date` <chr>,
     ## #   `Exclusivity Protected Indication * (Shown for approvals from Jan. 1, 2013, to the present)` <chr>,
     ## #   `Sponsor Country` <chr>
 
@@ -133,7 +129,7 @@ the newly created dataframe df1.
 df1 = df %>% slice(-c(1058))
 ```
 
-Then the count was repeated, which had the last row removed as shown in
+The count was then repeated, which had the last row removed as shown in
 the table.
 
 ``` r
@@ -159,8 +155,8 @@ A horizontal bar graph was plotted to show countries involved in rare
 disease drug developments (by counts, which might include duplicates
 such as different formulations under the same trade names and so on,
 I’ve decided to include them all for now). It showed United States had
-the highest counts of 966, which were followed by Ireland (16), United
-Kingdom (13) and also other countries that followed.
+the highest counts of 966, which were followed by Ireland (16), then
+United Kingdom (13) and also other countries.
 
 ``` r
 ggplot(data = df1) +
@@ -169,21 +165,31 @@ ggplot(data = df1) +
   coord_flip()
 ```
 
-![](Rare_diseases_drugs_Rstudio_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](Rare_diseases_drugs_RStudio_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+#### Rare disease drugs from the UK
+
+I’ve then decided to look into rare disease drugs with exclusivity end
+date after the year of 2022 and also limited the sponsor country to UK
+only. This was done using filter(). To show this result visually, a
+timeline was plotted using vistime package (thanks to vistime package
+creator, Sandro Raabe). The format of the dates in the data set was also
+changed first, so that the timeline could be plotted.
 
 ``` r
 library(lubridate)
-library(dplyr)
 ```
 
-#### Focus on rare disease drugs from UK
+    ## 
+    ## Attaching package: 'lubridate'
 
-I’ve then decided to look into rare disease drugs with exclusivity end
-date after 2022 and also limited the sponsor country to UK only so this
-was done using filter(). To show this result visually, a timeline was
-plotted using vistime package (thanks to its creator, Sandro Raabe). The
-format of the dates in the data set was also changed prior so that the
-timeline could be plotted.
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     date, intersect, setdiff, union
+
+``` r
+library(dplyr)
+```
 
 ``` r
 df_uk <- df %>% 
@@ -193,30 +199,31 @@ df_uk
 ```
 
     ## # A tibble: 8 × 18
-    ##   `Generic Name`     `Trade Name` `Date Designat…` `Orphan Design…`
-    ##   <chr>              <chr>        <date>           <chr>           
-    ## 1 belantamab mafodo… BLENREP      2017-06-22       Treatment of mu…
-    ## 2 cannabidiol        Epidiolex    2014-02-27       Treatment of Le…
-    ## 3 cannabidiol        Epidiolex    2013-11-14       Treatment of Dr…
-    ## 4 cannabidiol        Epidiolex    2016-04-19       Treatment of tu…
-    ## 5 cannabidiol        EPIDIOLEX    2014-02-27       Treatment of Le…
-    ## 6 cannabidiol        EPIDIOLEX    2013-11-14       Treatment of Dr…
-    ## 7 Coagulation facto… COAGADEX     2007-11-08       Treatment of he…
-    ## 8 tafenoquine        Krintafel    2013-01-15       Treatment of ma…
-    ## # … with 14 more variables: `Orphan Designation Status` <chr>,
-    ## #   `FDA Orphan Approval Status` <lgl>,
-    ## #   `Approved Labeled Indication` <chr>,
-    ## #   `Marketing Approval Date` <date>,
+    ##   `Generic Name`   `Trade Name` `Date Designat…` `Orphan Design…` `Orphan Design…`
+    ##   <chr>            <chr>        <date>           <chr>            <chr>           
+    ## 1 belantamab mafo… BLENREP      2017-06-22       Treatment of mu… Designated/Appr…
+    ## 2 cannabidiol      Epidiolex    2014-02-27       Treatment of Le… Designated/Appr…
+    ## 3 cannabidiol      Epidiolex    2013-11-14       Treatment of Dr… Designated/Appr…
+    ## 4 cannabidiol      Epidiolex    2016-04-19       Treatment of tu… Designated/Appr…
+    ## 5 cannabidiol      EPIDIOLEX    2014-02-27       Treatment of Le… Designated/Appr…
+    ## 6 cannabidiol      EPIDIOLEX    2013-11-14       Treatment of Dr… Designated/Appr…
+    ## 7 Coagulation fac… COAGADEX     2007-11-08       Treatment of he… Designated/Appr…
+    ## 8 tafenoquine      Krintafel    2013-01-15       Treatment of ma… Designated/Appr…
+    ## # … with 13 more variables: `FDA Orphan Approval Status` <lgl>,
+    ## #   `Approved Labeled Indication` <chr>, `Marketing Approval Date` <date>,
     ## #   `Exclusivity End Date` <date>,
     ## #   `Exclusivity Protected Indication * (Shown for approvals from Jan. 1, 2013, to the present)` <chr>,
-    ## #   `Sponsor Company` <chr>, `Sponsor Address 1` <chr>, …
+    ## #   `Sponsor Company` <chr>, `Sponsor Address 1` <chr>,
+    ## #   `Sponsor Address 2` <chr>, `Sponsor City` <chr>, `Sponsor State` <chr>,
+    ## #   `Sponsor Zip` <chr>, `Sponsor Country` <chr>, `CF Grid Key` <dbl>
 
 ``` r
 library(vistime)
 ```
 
-The timeline shown starts from the date of designation to marketing
-approval for all the rare disease drugs under this particular filter.
+The timeline shown below starts from the date of designation to
+marketing approval for all of the rare disease drugs under this
+particular filter.
 
 -   years on x-axis
 -   generic names on y-axis
@@ -226,9 +233,9 @@ approval for all the rare disease drugs under this particular filter.
 gg_vistime(df_uk, col.event = "Trade Name", col.group = "Generic Name", col.start = "Date Designated", col.end = "Marketing Approval Date", title = "Timeline from designation to marketing approval")
 ```
 
-![](Rare_diseases_drugs_Rstudio_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
+![](Rare_diseases_drugs_RStudio_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
 
-#### Focus on rare disease drugs from Ireland
+#### Rare disease drugs from Ireland
 
 For rare diseases drugs from Ireland, I’ve also changed the date formats
 and then selected the ones with exclusivity end date after 2022.
@@ -241,42 +248,43 @@ df_ir
 ```
 
     ## # A tibble: 6 × 18
-    ##   `Generic Name`     `Trade Name` `Date Designat…` `Orphan Design…`
-    ##   <chr>              <chr>        <date>           <chr>           
-    ## 1 calcium, magnesiu… Xywav        2019-07-31       Treatment of id…
-    ## 2 calcium, magnesiu… Xywav        1994-11-07       Treatment of na…
-    ## 3 inebilizumab       Uplizna      2016-02-10       Treatment of ne…
-    ## 4 lurbinectedin      Zepzelca     2018-08-01       Treatment of sm…
-    ## 5 sodium oxybate     Xyrem        1994-11-07       Treatment of na…
-    ## 6 teprotumumab       <NA>         2013-05-06       Treatment of ac…
-    ## # … with 14 more variables: `Orphan Designation Status` <chr>,
-    ## #   `FDA Orphan Approval Status` <lgl>,
-    ## #   `Approved Labeled Indication` <chr>,
-    ## #   `Marketing Approval Date` <date>,
+    ##   `Generic Name`   `Trade Name` `Date Designat…` `Orphan Design…` `Orphan Design…`
+    ##   <chr>            <chr>        <date>           <chr>            <chr>           
+    ## 1 calcium, magnes… Xywav        2019-07-31       Treatment of id… Designated/Appr…
+    ## 2 calcium, magnes… Xywav        1994-11-07       Treatment of na… Designated/Appr…
+    ## 3 inebilizumab     Uplizna      2016-02-10       Treatment of ne… Designated/Appr…
+    ## 4 lurbinectedin    Zepzelca     2018-08-01       Treatment of sm… Designated/Appr…
+    ## 5 sodium oxybate   Xyrem        1994-11-07       Treatment of na… Designated/Appr…
+    ## 6 teprotumumab     <NA>         2013-05-06       Treatment of ac… Designated/Appr…
+    ## # … with 13 more variables: `FDA Orphan Approval Status` <lgl>,
+    ## #   `Approved Labeled Indication` <chr>, `Marketing Approval Date` <date>,
     ## #   `Exclusivity End Date` <date>,
     ## #   `Exclusivity Protected Indication * (Shown for approvals from Jan. 1, 2013, to the present)` <chr>,
-    ## #   `Sponsor Company` <chr>, `Sponsor Address 1` <chr>, …
+    ## #   `Sponsor Company` <chr>, `Sponsor Address 1` <chr>,
+    ## #   `Sponsor Address 2` <chr>, `Sponsor City` <chr>, `Sponsor State` <chr>,
+    ## #   `Sponsor Zip` <chr>, `Sponsor Country` <chr>, `CF Grid Key` <dbl>
 
-Its timeline is shown below with the same idea of starting from the date
-of designation to marketing approval.
+The timeline is shown below starting from the date of designation to
+marketing approval.
 
 -   years on x-axis
 -   generic names on y-axis
--   trade names on top of timeline bars
+-   trade names on top of timeline bars (note: teprotumumab had no trade
+    name recorded in the data set so it was not shown in timeline)
 
 ``` r
 gg_vistime(df_ir, col.event = "Trade Name", col.group = "Generic Name", col.start = "Date Designated", col.end = "Marketing Approval Date", title = "Timeline from designation to marketing approval")
 ```
 
-![](Rare_diseases_drugs_Rstudio_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+![](Rare_diseases_drugs_RStudio_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
 
-#### Focus on rare disease drugs from United States
+#### Rare disease drugs from the US
 
 Since there are a larger number of rare disease drugs from the US, I’ve
 applied a filter to limit to the year of 2022 only and between the
-months of January to June - to observe the ones that still have
-exclusivity during this selected period. All date formats were also
-changed before the timeline was plotted.
+months of January to June - in order to observe the ones that still have
+exclusivity during this period. All date formats were also changed
+before the timeline was plotted.
 
 ``` r
 df_us <- df %>%
@@ -286,49 +294,51 @@ df_us
 ```
 
     ## # A tibble: 15 × 18
-    ##    `Generic Name`    `Trade Name` `Date Designat…` `Orphan Design…`
-    ##    <chr>             <chr>        <date>           <chr>           
-    ##  1 Antivenin crotal… Anavip       2004-01-29       Treatment of en…
-    ##  2 cholic acid       Cholbam      2003-07-18       Treatment of in…
-    ##  3 dinutuximab       Unituxin     2010-12-20       Treatment of ne…
-    ##  4 filgrastim        Neupogen     2013-11-20       Treatment of su…
-    ##  5 ibrutinib         Imbruvica    2013-10-15       Treatment of Wa…
-    ##  6 isavuconazonium … Cresemba     2013-05-06       Treatment of in…
-    ##  7 isavuconazonium … Cresemba     2013-10-25       Treatment of zy…
-    ##  8 ivacaftor         Kalydeco     2006-12-20       Treatment of pa…
-    ##  9 lenalidomide      Revlimid     2001-09-20       Treatment of mu…
-    ## 10 lenvatinib        Lenvima      2012-12-27       Treatment of fo…
-    ## 11 levodopa and car… Duopa        2000-01-18       Treatment of la…
-    ## 12 panobinostat      Farydak      2012-08-20       Treatment of mu…
-    ## 13 parathyroid horm… Natpara      2007-08-31       Treatment of hy…
-    ## 14 phoxillum         <NA>         2014-02-14       For use as a re…
-    ## 15 sirolimus         Rapamune     2012-10-31       Treatment of ly…
-    ## # … with 14 more variables: `Orphan Designation Status` <chr>,
-    ## #   `FDA Orphan Approval Status` <lgl>,
-    ## #   `Approved Labeled Indication` <chr>,
-    ## #   `Marketing Approval Date` <date>,
+    ##    `Generic Name`  `Trade Name` `Date Designat…` `Orphan Design…` `Orphan Design…`
+    ##    <chr>           <chr>        <date>           <chr>            <chr>           
+    ##  1 Antivenin crot… Anavip       2004-01-29       Treatment of en… Designated/Appr…
+    ##  2 cholic acid     Cholbam      2003-07-18       Treatment of in… Designated/Appr…
+    ##  3 dinutuximab     Unituxin     2010-12-20       Treatment of ne… Designated/Appr…
+    ##  4 filgrastim      Neupogen     2013-11-20       Treatment of su… Designated/Appr…
+    ##  5 ibrutinib       Imbruvica    2013-10-15       Treatment of Wa… Designated/Appr…
+    ##  6 isavuconazoniu… Cresemba     2013-05-06       Treatment of in… Designated/Appr…
+    ##  7 isavuconazoniu… Cresemba     2013-10-25       Treatment of zy… Designated/Appr…
+    ##  8 ivacaftor       Kalydeco     2006-12-20       Treatment of pa… Designated/Appr…
+    ##  9 lenalidomide    Revlimid     2001-09-20       Treatment of mu… Designated/Appr…
+    ## 10 lenvatinib      Lenvima      2012-12-27       Treatment of fo… Designated/Appr…
+    ## 11 levodopa and c… Duopa        2000-01-18       Treatment of la… Designated/Appr…
+    ## 12 panobinostat    Farydak      2012-08-20       Treatment of mu… Designated/Appr…
+    ## 13 parathyroid ho… Natpara      2007-08-31       Treatment of hy… Designated/Appr…
+    ## 14 phoxillum       <NA>         2014-02-14       For use as a re… Designated/Appr…
+    ## 15 sirolimus       Rapamune     2012-10-31       Treatment of ly… Designated/Appr…
+    ## # … with 13 more variables: `FDA Orphan Approval Status` <lgl>,
+    ## #   `Approved Labeled Indication` <chr>, `Marketing Approval Date` <date>,
     ## #   `Exclusivity End Date` <date>,
     ## #   `Exclusivity Protected Indication * (Shown for approvals from Jan. 1, 2013, to the present)` <chr>,
-    ## #   `Sponsor Company` <chr>, `Sponsor Address 1` <chr>, …
+    ## #   `Sponsor Company` <chr>, `Sponsor Address 1` <chr>,
+    ## #   `Sponsor Address 2` <chr>, `Sponsor City` <chr>, `Sponsor State` <chr>,
+    ## #   `Sponsor Zip` <chr>, `Sponsor Country` <chr>, `CF Grid Key` <dbl>
 
 The timeline for this particular set of rare disease drugs from the US
 is shown below.
 
 -   years on x-axis
 -   generic names on y-axis
--   trade names on top of timeline bars
+-   trade names on top of timeline bars (note: phoxillum had no trade
+    name recorded in the data set so it was not shown in the timeline)
 
 ``` r
 gg_vistime(df_us, col.event = "Trade Name", col.group = "Generic Name", col.start = "Date Designated", col.end = "Marketing Approval Date", title = "Timeline from designation to marketing approval")
 ```
 
-![](Rare_diseases_drugs_Rstudio_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
+![](Rare_diseases_drugs_RStudio_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
 
 ### Conclusion
 
-This short dive-in session on this set of rare disease drugs data has
-shown that US is still the country that has the most involvement in rare
+This short dive-in session on this set of data on rare disease drugs has
+shown that the US is the country that has the most involvement in rare
 disease drug developments, which is followed by Ireland and the UK, and
-also a number of other countries. The timelines have also hinted that
-drug discovery and development is a timely process and it could span
-many years before a drug actually reaches marketing approval.
+also a number of other countries. The timelines have also implied that
+drug discovery and development is a timely process, which could span
+many years (e.g. 10 - 20 years or more) before a drug actually reaches
+marketing approval.

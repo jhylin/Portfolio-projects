@@ -8,7 +8,7 @@ output: github_document
 ### Why rare disease drugs?
 This work was inspired by Data Is Plural website [link](https://www.data-is-plural.com), which has provided a diverse and dynamic range of data available to the public. I happened to come across it randomly without any intentions and rare disease drugs jumped out from all of the data available at the time. 
 
-Below is an initial dive-in for this particular data set for rare disease drugs from 1983 till present - downloadable from: <https://www.accessdata.fda.gov/scripts/opdlisting/oopd/index.cfm> (last accessed: 1/7/2022). Future work may evolve from this initial part and perhaps grow further as I'm slowly working on other data available from Orphanet, a website dedicated to data relevant to rare diseases. 
+Below is an initial dive-in for this particular data set for rare disease drugs from 1983 till present - downloadable from: <https://www.accessdata.fda.gov/scripts/opdlisting/oopd/index.cfm> (last accessed: 1/7/2022). Future work may evolve from this initial part and perhaps grow further as I'm slowly working on other data available from Orphanet, a website dedicated to data relevant to rare diseases.
 
 Read .csv file firstly to import the data set.
 ```{r echo=TRUE, message=FALSE}

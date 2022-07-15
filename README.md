@@ -1,5 +1,5 @@
 # Portfolio-projects
-This repository contains different healthcare and pharmaceutical-related projects of my personal interests. 
+This repository contains different healthcare and pharmaceutical-related projects from my personal interests, as I came from a pharmacy background initially, so I do still want to delve deeper into these fields with the use of data science and analytics tools.
 
 All of the projects are done by using Python (via Anaconda), SQL (via DBeaver on MySQL server), and also R (via RStudio), which is another programming language I've derived recently.
 
@@ -18,3 +18,5 @@ All of the projects are done by using Python (via Anaconda), SQL (via DBeaver on
 #### Future planned projects (work-in-progress):
 * Phenotypes associated with rare diseases
 * COVID-19 antivirals in phase 3 clinical trials
+
+If there are anything that is incorrect or required to be improved, please contact: jennyhylin-at-gmail.com

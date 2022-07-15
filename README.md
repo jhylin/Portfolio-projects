@@ -19,4 +19,4 @@ All of the projects are done by using Python (via Anaconda), SQL (via DBeaver on
 * Phenotypes associated with rare diseases
 * COVID-19 antivirals in phase 3 clinical trials
 
-If there are anything that is incorrect or required to be improved, please contact: jennyhylin-at-gmail.com
+If there are anything that is incorrect or required to be improved, please contact: jennyhylin-at-gmail.com (would love to hear any constructive feedbacks so I can learn, thanks)

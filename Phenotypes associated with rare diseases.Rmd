@@ -43,17 +43,17 @@ df %>% View()
 Since I wasn't intending for this project to grow into a TL;DR version (as most people would likely lose interests and willpower to read by then), I'd like to ask a question about the data set, in order to keep it at a reasonably short but informative length, which was what are the most common rare disorders along with their associated phenotypes?
 
 So to answer it, let's observe the spread of the disorder groups and types by formulating a contingency table first.
-```{r}
+```{r message = FALSE}
 df_type <- df %>% 
   group_by(`Disorder group`,`Disorder type`) %>% 
-  summarize(Number = n())
+  summarise(Number = n())
 df_type
 ```
 After a quick view on the column of "Disorder group", it mainly provided different disorder types a group label for each, which to a certain extent, was not necessary at this early stage of EDA. So I decided to remove this column for now from the contingency table, in order to focus solely on, "Disorder type" with number of counts (or times it appeared in the dataset).
 ```{r contingency table - disorder type & number}
 df_type <- df %>% 
   group_by(`Disorder type`) %>% 
-  summarize(Number = n())
+  summarise(Number = n())
 df_type
 ```
 Then to visualise this in a graphic way, a lollypop chart was built in a horizontal fashion, with different rare disorder types on the y-axis and number of each type on the x-axis.
@@ -71,7 +71,9 @@ Two disorder types stood out the most, with Disease type appeared 57,920 times a
 
 2.  For "Malformation syndrome", this was defined as, "A disorder resulting from a developmental anomaly involving more than one morphogenetic field. Malformative sequences and associations are included."
 
-Reference: "Orphadata: Free access products description" - April 2020 <http://www.orphadata.org/cgi-bin/img/PDF/OrphadataFreeAccessProductsDescription.pdf> Version 2
+Reference: 
+* "Orphadata: Free access products description" - April 2020 * <http://www.orphadata.org/cgi-bin/img/PDF/OrphadataFreeAccessProductsDescription.pdf> 
+Version 2
 
 To demonstrate this in a tabular form, with corresponding proportions of each disorder type in the dataset, the following codes were used:
 ```{r percentages of disorder type}
@@ -106,9 +108,10 @@ df2 %>% arrange(desc(n))
 ```
 To show this, let's link preferred HPO terms to a disorder name such as this one, "Autosomal recessive complex spastic paraplegia due to Kennedy pathway dysfunction", which had the "Disease" disorder type with obligate or 100% HPO frequency.
 ```{r}
-df %>% 
+df_disease <- df %>% 
   filter(`Disorder type` == "Disease", `HPO frequency` == "Obligate (100%)", `Disorder name` == "Autosomal recessive complex spastic paraplegia due to Kennedy pathway dysfunction") %>% 
   select(`Disorder type`, `HPO frequency`, `Disorder name`, `Preferred HPO term`)
+kable(df_disease)
 ```
 As shown in the dataframe above, under the column name, "Preferred HPO term", there were a total of ten different HPO phenotype terms associated with this particular rare disease with 100% HPO frequency within the patient population for this specific type of spastic paraplegia.
 

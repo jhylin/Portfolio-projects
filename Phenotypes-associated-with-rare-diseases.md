@@ -164,7 +164,8 @@ what each of these two disorder types were, a direct reference was used
     morphogenetic field. Malformative sequences and associations are
     included.”
 
-Reference: “Orphadata: Free access products description” - April 2020
+Reference: \* “Orphadata: Free access products description” - April 2020
+\*
 <http://www.orphadata.org/cgi-bin/img/PDF/OrphadataFreeAccessProductsDescription.pdf>
 Version 2
 
@@ -300,25 +301,24 @@ pathway dysfunction”, which had the “Disease” disorder type with
 obligate or 100% HPO frequency.
 
 ``` r
-df %>% 
+df_disease <- df %>% 
   filter(`Disorder type` == "Disease", `HPO frequency` == "Obligate (100%)", `Disorder name` == "Autosomal recessive complex spastic paraplegia due to Kennedy pathway dysfunction") %>% 
   select(`Disorder type`, `HPO frequency`, `Disorder name`, `Preferred HPO term`)
+kable(df_disease)
 ```
 
-    ## # A tibble: 10 × 4
-    ##    `Disorder type` `HPO frequency` `Disorder name`                                       Prefe…¹
-    ##    <chr>           <chr>           <chr>                                                 <chr>  
-    ##  1 Disease         Obligate (100%) Autosomal recessive complex spastic paraplegia due t… Progre…
-    ##  2 Disease         Obligate (100%) Autosomal recessive complex spastic paraplegia due t… Microc…
-    ##  3 Disease         Obligate (100%) Autosomal recessive complex spastic paraplegia due t… Modera…
-    ##  4 Disease         Obligate (100%) Autosomal recessive complex spastic paraplegia due t… Nasal,…
-    ##  5 Disease         Obligate (100%) Autosomal recessive complex spastic paraplegia due t… Delaye…
-    ##  6 Disease         Obligate (100%) Autosomal recessive complex spastic paraplegia due t… Progre…
-    ##  7 Disease         Obligate (100%) Autosomal recessive complex spastic paraplegia due t… Lower …
-    ##  8 Disease         Obligate (100%) Autosomal recessive complex spastic paraplegia due t… Ankle …
-    ##  9 Disease         Obligate (100%) Autosomal recessive complex spastic paraplegia due t… Retina…
-    ## 10 Disease         Obligate (100%) Autosomal recessive complex spastic paraplegia due t… Progre…
-    ## # … with abbreviated variable name ¹​`Preferred HPO term`
+| Disorder type | HPO frequency   | Disorder name                                                                     | Preferred HPO term                  |
+|:--------------|:----------------|:----------------------------------------------------------------------------------|:------------------------------------|
+| Disease       | Obligate (100%) | Autosomal recessive complex spastic paraplegia due to Kennedy pathway dysfunction | Progressive spastic paraplegia      |
+| Disease       | Obligate (100%) | Autosomal recessive complex spastic paraplegia due to Kennedy pathway dysfunction | Microcephaly                        |
+| Disease       | Obligate (100%) | Autosomal recessive complex spastic paraplegia due to Kennedy pathway dysfunction | Moderately short stature            |
+| Disease       | Obligate (100%) | Autosomal recessive complex spastic paraplegia due to Kennedy pathway dysfunction | Nasal, dysarthic speech             |
+| Disease       | Obligate (100%) | Autosomal recessive complex spastic paraplegia due to Kennedy pathway dysfunction | Delayed gross motor development     |
+| Disease       | Obligate (100%) | Autosomal recessive complex spastic paraplegia due to Kennedy pathway dysfunction | Progressive spasticity              |
+| Disease       | Obligate (100%) | Autosomal recessive complex spastic paraplegia due to Kennedy pathway dysfunction | Lower limb hyperreflexia            |
+| Disease       | Obligate (100%) | Autosomal recessive complex spastic paraplegia due to Kennedy pathway dysfunction | Ankle clonus                        |
+| Disease       | Obligate (100%) | Autosomal recessive complex spastic paraplegia due to Kennedy pathway dysfunction | Retinal pigment epithelial mottling |
+| Disease       | Obligate (100%) | Autosomal recessive complex spastic paraplegia due to Kennedy pathway dysfunction | Progressive spastic paraparesis     |
 
 As shown in the dataframe above, under the column name, “Preferred HPO
 term”, there were a total of ten different HPO phenotype terms

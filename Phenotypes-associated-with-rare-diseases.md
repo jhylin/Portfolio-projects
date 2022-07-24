@@ -10,14 +10,16 @@ library(ggplot2)
 library(knitr)
 ```
 
-\###Initial data wrangling This data set was also derived and downloaded
-from Orphanet, but because it contained 37 columns with 112,243 rows
-originally, it took quite a long time to load on RStudio (or could be
-due to my laptop capacity…). It loaded relatively faster on Jupyter
-notebook from Anaconda, so I decided to clean it up first using Python
-there. Some columns were removed which reduced the number of columns
-from 37 to 13, while not changing any of the rows. The columns were also
-renamed to make it easier to read as shown below.
+### Initial data wrangling
+
+This data set was also derived and downloaded from Orphanet, but because
+it contained 37 columns with 112,243 rows originally, it took quite a
+long time to load on RStudio (or could be due to my laptop capacity…).
+It loaded relatively faster on Jupyter notebook from Anaconda, so I
+decided to clean it up first using Python there. Some columns were
+removed which reduced the number of columns from 37 to 13, while not
+changing any of the rows. The columns were also renamed to make it
+easier to read as shown below.
 
 ``` r
 df <- read_csv("rare_disease_phenotypes.csv")
@@ -283,4 +285,4 @@ clinical features, along with associated HPO phenotype frequency, for
 further investigations.
 
 For “Malformation syndrome” - let’s look into associated phenotypes for
-it
+it… *to be continued*

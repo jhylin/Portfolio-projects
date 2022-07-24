@@ -21,6 +21,17 @@ removed which reduced the number of columns from 37 to 13, while not
 changing any of the rows. The columns were also renamed to make it
 easier to read as shown below.
 
+#### Source of dataset
+
+-   Orphadata: Free access data from Orphanet.
+-   © INSERM 1999. Available on <http://www.orphadata.org>. Data version
+    (XML data version).
+-   Dataset (.xml file) from
+    <http://www.orphadata.org/cgi-bin/epidemio.html>
+-   Latest date of update for the dataset: 14/6/2022 (last accessed
+    24/7/2022)
+-   Creative Commons Attribution 4.0 International
+
 ``` r
 df <- read_csv("rare_disease_phenotypes.csv")
 ```
@@ -63,13 +74,50 @@ df %>% View()
 
 #### Exploratory data analysis
 
-Since I’m not intending for this project to grow into a TL;DR version
-(as most people would most likely lose interests and will to read by
-then), I’m going to ask a question about the data set: What are the most
-common rare disorders and the associated phenotype features with them?
+Since I wasn’t intending for this project to grow into a TL;DR version
+(as most people would likely lose interests and willpower to read by
+then), I’d like to ask a question about the data set, in order to keep
+it at a reasonably short but informative length, which was what are the
+most common rare disorders along with their associated phenotypes?
 
 So to answer it, let’s observe the spread of the disorder groups and
 types by formulating a contingency table first.
+
+``` r
+df_type <- df %>% 
+  group_by(`Disorder group`,`Disorder type`) %>% 
+  summarize(Number = n())
+```
+
+    ## `summarise()` has grouped output by 'Disorder group'. You can override using the `.groups`
+    ## argument.
+
+``` r
+df_type
+```
+
+    ## # A tibble: 11 × 3
+    ## # Groups:   Disorder group [3]
+    ##    `Disorder group`    `Disorder type`                                        Number
+    ##    <chr>               <chr>                                                   <int>
+    ##  1 Disorder            Biological anomaly                                         41
+    ##  2 Disorder            Clinical syndrome                                         661
+    ##  3 Disorder            Disease                                                 57920
+    ##  4 Disorder            Malformation syndrome                                   37634
+    ##  5 Disorder            Morphological anomaly                                    2644
+    ##  6 Disorder            Particular clinical situation in a disease or syndrome    418
+    ##  7 Group of disorders  Category                                                  479
+    ##  8 Group of disorders  Clinical group                                            952
+    ##  9 Subtype of disorder Clinical subtype                                         7394
+    ## 10 Subtype of disorder Etiological subtype                                      4060
+    ## 11 Subtype of disorder Histopathological subtype                                  40
+
+After a quick view on the column of “Disorder group”, it mainly provided
+different disorder types a group label for each, which to a certain
+extent, was not necessary at this early stage of EDA. So I decided to
+remove this column for now from the contingency table, in order to focus
+solely on, “Disorder type” with number of counts (or times it appeared
+in the dataset).
 
 ``` r
 df_type <- df %>% 
@@ -93,27 +141,9 @@ df_type
     ## 10 Morphological anomaly                                    2644
     ## 11 Particular clinical situation in a disease or syndrome    418
 
-Then to actually visualise this in a graphic way, a lollypop chart was
-built in a horizontal fashion, with different rare disorder types on the
-y-axis and number of each type on the x-axis.
-
-Two disorder types stood out the most, with Disease type appeared 57,920
-times and Malformation syndrome at 37,634 times. To fully understand
-what each of these two disorder types are, a direct reference (see note
-below) was used and according to the source of the dataset:
-
-1.  Definition of “Disease” in the rare disease context is “a disorder
-    with homogeneous therapeutic possibilities and an identified
-    physiopathological mechanism…”, one thing also worth noting was that
-    this type did not include any developmental anomalies.
-2.  For “Malformation syndrome”, this was defined as, “A disorder
-    resulting from a developmental anomaly involving more than one
-    morphogenetic field. Malformative sequences and associations are
-    included.”
-
-Reference: “Orphadata: Free access products description” - April 2020
-<http://www.orphadata.org/cgi-bin/img/PDF/OrphadataFreeAccessProductsDescription.pdf>
-Version 2
+Then to visualise this in a graphic way, a lollypop chart was built in a
+horizontal fashion, with different rare disorder types on the y-axis and
+number of each type on the x-axis.
 
 ``` r
 ggplot(data = df_type, aes(x = `Disorder type`, y = `Number`)) +
@@ -124,6 +154,28 @@ ggplot(data = df_type, aes(x = `Disorder type`, y = `Number`)) +
 ```
 
 ![](Phenotypes-associated-with-rare-diseases_files/figure-gfm/lollypop%20chart-1.png)<!-- -->
+Two disorder types stood out the most, with Disease type appeared 57,920
+times and Malformation syndrome at 37,634 times. To understand further
+what each of these two disorder types were, a direct reference was used
+(see note below) and according to the source of the dataset:
+
+1.  The definition of “Disease” in the rare disease context is “a
+    disorder with homogeneous therapeutic possibilities and an
+    identified physiopathological mechanism…”, one thing also worth
+    noting was that this type did not include any developmental
+    anomalies.
+
+2.  For “Malformation syndrome”, this was defined as, “A disorder
+    resulting from a developmental anomaly involving more than one
+    morphogenetic field. Malformative sequences and associations are
+    included.”
+
+Reference: “Orphadata: Free access products description” - April 2020
+<http://www.orphadata.org/cgi-bin/img/PDF/OrphadataFreeAccessProductsDescription.pdf>
+Version 2
+
+To demonstrate this in a tabular form, with corresponding proportions of
+each disorder type in the dataset, the following codes were used:
 
 ``` r
 df1 <- df %>% 
@@ -148,9 +200,9 @@ df1
     ## 10 Morphological anomaly                                   2644 0.0236  
     ## 11 Particular clinical situation in a disease or syndrome   418 0.00372
 
-Rearrange the table with proportions in descending order (from highest
-to lowest). It also showed the top two were “Disease” (51.6%) and
-“Malformation syndrome” (33.5%).
+The table was then rearranged with proportions in descending order (from
+highest to lowest). It also showed the top two were “Disease” (51.6%)
+and “Malformation syndrome” (33.5%).
 
 ``` r
 df1 %>% arrange(desc(prop))
@@ -171,8 +223,8 @@ df1 %>% arrange(desc(prop))
     ## 10 Biological anomaly                                        41 0.000365
     ## 11 Histopathological subtype                                 40 0.000356
 
-Check out the distributions of HPO frequency to see which category has
-the most and least number of counts.
+This was followed by checking out the distributions of HPO frequency to
+see which categories had the most and least number of counts.
 
 ``` r
 df_freq <- df %>% 
@@ -192,11 +244,11 @@ df_freq
     ## 6 Obligate (100%)          610
     ## 7 <NA>                       2
 
-Filter results for rare disorders with obligate or 100% frequency in
-patient’s populations, showing disorder type, HPO frequency and disorder
-name. Specifically, I wanted to find out the disorder names associated
-with the “Disease” disorder type with HPO frequency of “Obligate
-(100%)”.
+Results for rare disorders with obligate or 100% frequency in patient’s
+populations were then filtered, showing disorder type, HPO frequency and
+disorder name. Specifically, I wanted to find out the disorder names
+associated with the “Disease” disorder type with HPO frequency of
+“Obligate (100%)”.
 
 ``` r
 df_freq_ob <- df %>% 
@@ -222,10 +274,10 @@ df_freq_ob
     ## # ℹ Use `print(n = ...)` to see more rows
 
 I’d then like to look into associated counts of appearance of each
-disorder name. When I cross-checked with the original dataset table
-view, I’ve noted that the number of appearance of each disorder name is
-linked to the number of preferred HPO phenotype terms of each of these
-disorder types.
+disorder name. When I cross-checked with the dataset table view, I’ve
+noted that the number of appearance of each disorder name is linked to
+the number of preferred HPO phenotype terms of each of these disorder
+types.
 
 ``` r
 df2 <- df_freq_ob %>% count(`Disorder name`)
@@ -248,10 +300,10 @@ df2 %>% arrange(desc(n))
     ## # … with 229 more rows
     ## # ℹ Use `print(n = ...)` to see more rows
 
-To show this, let’s link preferred HPO terms to a disorder name such as,
-“Autosomal recessive complex spastic paraplegia due to Kennedy pathway
-dysfunction”, which had the “Disease” disorder type with obligate or
-100% HPO frequency.
+To show this, let’s link preferred HPO terms to a disorder name such as
+this one, “Autosomal recessive complex spastic paraplegia due to Kennedy
+pathway dysfunction”, which had the “Disease” disorder type with
+obligate or 100% HPO frequency.
 
 ``` r
 df %>% 
@@ -274,13 +326,14 @@ df %>%
     ## 10 Disease         Obligate (100%) Autosomal recessive complex spastic paraplegia due t… Progre…
     ## # … with abbreviated variable name ¹​`Preferred HPO term`
 
-As shown in the dataframe above, there are a total of ten different HPO
-phenotype terms associated with this particular rare disease with 100%
-HPO frequency within the patient population for this specific type of
-spastic paraplegia.
+As shown in the dataframe above, under the column name, “Preferred HPO
+term”, there were a total of ten different HPO phenotype terms
+associated with this particular rare disease with 100% HPO frequency
+within the patient population for this specific type of spastic
+paraplegia.
 
-By using similar filtering method, we can quickly narrow down any
-particular rare disease of interest to find out specific phenotypes or
+By using similar filtering method, we could quickly narrow down any
+particular rare disease of interest to find out specific phenotype or
 clinical features, along with associated HPO phenotype frequency, for
 further investigations.
 

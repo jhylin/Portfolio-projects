@@ -86,13 +86,7 @@ types by formulating a contingency table first.
 ``` r
 df_type <- df %>% 
   group_by(`Disorder group`,`Disorder type`) %>% 
-  summarize(Number = n())
-```
-
-    ## `summarise()` has grouped output by 'Disorder group'. You can override using the `.groups`
-    ## argument.
-
-``` r
+  summarise(Number = n())
 df_type
 ```
 
@@ -122,7 +116,7 @@ in the dataset).
 ``` r
 df_type <- df %>% 
   group_by(`Disorder type`) %>% 
-  summarize(Number = n())
+  summarise(Number = n())
 df_type
 ```
 

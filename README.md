@@ -4,7 +4,7 @@ This repository contains different healthcare and pharmaceutical-related project
 All of the projects were done by using Python (via Anaconda), SQL (via DBeaver on MySQL server), and R (via RStudio), which is another programming language I've derived recently.
 
 #### Completed projects:
-#### Rare disease drugs 
+#### Drugs in rare disease
 Blog post [link](https://jhylinportfolio.wordpress.com/portfolio/python-project-rare-disease-drugs/) for background information
 - Python (Rare disease drugs - approved only.ipynb)
 - R with base R version (Rare disease drugs (base R methods).ipynb) and Tidyverse version (Rare_diseases_drugs_RStudio.md) plus graphs in separate file folder with same file name

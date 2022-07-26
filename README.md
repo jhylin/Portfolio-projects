@@ -15,10 +15,10 @@ Blog post [link](https://jhylinportfolio.wordpress.com/portfolio/python-project-
 
 #### Long COVID 
 - SQL (Long COVID.sql), please see blog post [link](https://jhylinportfolio.wordpress.com/portfolio/sql-project-long-covid/) for further information
-- Tableau (not in GitHub but please see Tableau Public [link](https://public.tableau.com/app/profile/jennifer.hy.lin/viz/CharacterisinglongCOVID/Riskfactorswithclinicalassociations) for dashboards, and blog post [link](https://jhylinportfolio.wordpress.com/portfolio/tableau-project/) for further information)
+- Tableau (not in GitHub, but please see Tableau Public [link](https://public.tableau.com/app/profile/jennifer.hy.lin/viz/CharacterisinglongCOVID/Riskfactorswithclinicalassociations) for dashboards, and blog post [link](https://jhylinportfolio.wordpress.com/portfolio/tableau-project/) for further information)
 
 #### Future planned projects (work-in-progress):
 * Phenotypes associated with rare diseases
 * COVID-19 antivirals in phase 3 clinical trials
 
-If there are anything that is incorrect, missed or more to be added, please vist [my portfolio blog](https://jhylinportfolio.wordpress.com/project-type/data-analytics/) and leave a comment as I'd love to hear any feedbacks so I can learn and improve (ideally constructive ones please), many thanks.
+If there are anything that is incorrect, missed or more to be added, please vist [my portfolio blog](https://jhylinportfolio.wordpress.com/project-type/data-analytics/) and leave a comment as I'd love to hear any feedbacks so I can learn and improve, many thanks.

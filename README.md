@@ -1,7 +1,7 @@
 # Portfolio-projects
-This repository contains different healthcare and pharmaceutical-related projects from my personal interests, as I came from a pharmacy background initially, so I do still want to delve deeper into these fields with the use of data science and analytics tools.
+This repository contains different healthcare and pharmaceutical-related projects from my personal interests, as I've come from a pharmacy background initially, followed by a few years of research (still not an expert yet), so naturally I still want to delve further into these fields by using data science and analytics tools.
 
-All of the projects are done by using Python (via Anaconda), SQL (via DBeaver on MySQL server), and also R (via RStudio), which is another programming language I've derived recently.
+All of the projects were done by using Python (via Anaconda), SQL (via DBeaver on MySQL server), and R (via RStudio), which is another programming language I've derived recently.
 
 #### Completed projects:
 #### Rare disease drugs 
@@ -21,4 +21,4 @@ Blog post [link](https://jhylinportfolio.wordpress.com/portfolio/python-project-
 * Phenotypes associated with rare diseases
 * COVID-19 antivirals in phase 3 clinical trials
 
-If there are anything that is incorrect or missed, please vist [my portfolio blog](https://jhylinportfolio.wordpress.com/project-type/data-analytics/) and leave a comment as I'd love to hear any constructive feedbacks so I can learn and improve, many thanks.
+If there are anything that is incorrect, missed or more to be added, please vist [my portfolio blog](https://jhylinportfolio.wordpress.com/project-type/data-analytics/) and leave a comment as I'd love to hear any feedbacks so I can learn and improve (ideally constructive ones please), many thanks.

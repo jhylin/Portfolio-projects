@@ -17,20 +17,20 @@ library(knitr)
 ```
 
 ### Initial data wrangling 
-This data set was also derived and downloaded from Orphanet, but because it contained 37 columns with 112,243 rows originally, it took quite a long time to load on RStudio (or could be due to my laptop capacity...). It loaded relatively faster on Jupyter notebook from Anaconda, so I decided to clean it up first using Python there. Some columns were removed which reduced the number of columns from 37 to 13, while not changing any of the rows. The columns were also renamed to make it easier to read as shown below.
+This data set was also derived and downloaded from Orphanet, as another part in the "rare diseases" series. It contained 37 columns with 112,243 rows originally, which took quite a long time to load on RStudio (or could be due to my laptop capacity...). It loaded relatively faster on Jupyter notebook from Anaconda, so I then decided to clean it up first using Python there. Some columns were removed which reduced the total number of columns from 37 to 13, while not changing any of the rows at all. The columns were also renamed to make it easier to read as shown below.
 
 #### Source of dataset
 * Orphadata: Free access data from Orphanet. 
-* © INSERM 1999. Available on http://www.orphadata.org. Data version (XML data version).
-* Dataset (.xml file) from http://www.orphadata.org/cgi-bin/epidemio.html
-* Latest date of update for the dataset: 14/6/2022 (last accessed 24/7/2022)
-* Creative Commons Attribution 4.0 International
+© INSERM 1999. Available on http://www.orphadata.org. Data version (XML data version).
+Dataset (.xml file) from http://www.orphadata.org/cgi-bin/epidemio.html
+Latest date of update for the dataset: 14/6/2022 (last accessed 24/7/2022)
+Creative Commons Attribution 4.0 International
 
 ```{r load file}
 df <- read_csv("rare_disease_phenotypes.csv")
 ```
 
-The abbreviation of HPO means human phenotype ontology.
+Note: HPO = human phenotype ontology
 
 ```{r column names}
 spec(df)
@@ -40,7 +40,7 @@ spec(df)
 df %>% View()
 ```
 #### Exploratory data analysis
-Since I wasn't intending for this project to grow into a TL;DR version (as most people would likely lose interests and willpower to read by then), I'd like to ask a question about the data set, in order to keep it at a reasonably short but informative length, which was what are the most common rare disorders along with their associated phenotypes?
+Since I wasn't intending for this project to be extremely long (as most people would likely lose interests by then), I'd like to first ask a question about the data set, in order to keep it at a reasonably short but informative length. So here's the question: what are the most common rare disorders and their associated phenotypic features?
 
 So to answer it, let's observe the spread of the disorder groups and types by formulating a contingency table first.
 ```{r message = FALSE}
@@ -49,14 +49,14 @@ df_type <- df %>%
   summarise(Number = n())
 df_type
 ```
-After a quick view on the column of "Disorder group", it mainly provided different disorder types a group label for each, which to a certain extent, was not necessary at this early stage of EDA. So I decided to remove this column for now from the contingency table, in order to focus solely on, "Disorder type" with number of counts (or times it appeared in the dataset).
+After a quick view on the column of "Disorder group", it mainly provided different disorder types a group label for each, which to a certain extent, was not necessary at this early stage. So this column was removed for now from the contingency table, in order to focus solely on, "Disorder type" with the number of counts (or times it appeared in the dataset).
 ```{r contingency table - disorder type & number}
 df_type <- df %>% 
   group_by(`Disorder type`) %>% 
   summarise(Number = n())
 df_type
 ```
-Then to visualise this in a graphic way, a lollypop chart was built in a horizontal fashion, with different rare disorder types on the y-axis and number of each type on the x-axis.
+Then to visualise this in a graphic way, a lollypop chart was built horizontally, with different types of rare disorders on the y-axis and the number of each type on the x-axis.
 
 ```{r lollypop chart}
 ggplot(data = df_type, aes(x = `Disorder type`, y = `Number`)) +
@@ -65,14 +65,15 @@ ggplot(data = df_type, aes(x = `Disorder type`, y = `Number`)) +
   theme_light() +
   coord_flip() 
 ```
-Two disorder types stood out the most, with Disease type appeared 57,920 times and Malformation syndrome at 37,634 times. To understand further what each of these two disorder types were, a direct reference was used (see note below) and according to the source of the dataset:
 
-1.  The definition of "Disease" in the rare disease context is "a disorder with homogeneous therapeutic possibilities and an identified physiopathological mechanism...", one thing also worth noting was that this type did not include any developmental anomalies.
+Two disorder types stood out the most, with "Disease" type appeared 57,920 times and "Malformation syndrome" at 37,634 times. To understand further what each of these two disorder types were, a direct reference was used (see note below). According to the source of the dataset:
 
-2.  For "Malformation syndrome", this was defined as, "A disorder resulting from a developmental anomaly involving more than one morphogenetic field. Malformative sequences and associations are included."
+The definition of "Disease" in the rare disorder context was "a disorder with homogeneous therapeutic possibilities and an identified physiopathological mechanism...", one thing also worth noting was that this type did not include any developmental anomalies.
+
+For "Malformation syndrome", this was defined as, "A disorder resulting from a developmental anomaly involving more than one morphogenetic field. Malformative sequences and associations are included."
 
 Reference: 
-* "Orphadata: Free access products description" - April 2020 * <http://www.orphadata.org/cgi-bin/img/PDF/OrphadataFreeAccessProductsDescription.pdf> 
+"Orphadata: Free access products description" - April 2020  <http://www.orphadata.org/cgi-bin/img/PDF/OrphadataFreeAccessProductsDescription.pdf> 
 Version 2
 
 To demonstrate this in a tabular form, with corresponding proportions of each disorder type in the dataset, the following codes were used:
@@ -101,7 +102,7 @@ df_freq_ob <- df %>%
   select(`Disorder type`, `HPO frequency`, `Disorder name`)
 df_freq_ob
 ```
-I'd then like to look into associated counts of appearance of each disorder name. When I cross-checked with the dataset table view, I've noted that the number of appearance of each disorder name is linked to the number of preferred HPO phenotype terms of each of these disorder types. 
+I'd then like to look into associated counts of appearance of each disorder name. When I cross-checked with the full dataset in table view, I've noted that the number of appearance of each disorder name is linked to the number of preferred HPO phenotype terms of each of these disorder types. 
 ```{r}
 df2 <- df_freq_ob %>% count(`Disorder name`)
 df2 %>% arrange(desc(n))

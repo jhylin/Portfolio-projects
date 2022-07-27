@@ -12,7 +12,7 @@ library(knitr)
 
 ### Initial data wrangling
 
-This data set was also derived and downloaded from Orphanet, as another
+This dataset was also derived and downloaded from Orphanet, as another
 part in the “rare diseases” series. It contained 37 columns with 112,243
 rows originally, which took quite a long time to load on RStudio (or
 could be due to my laptop capacity…). It loaded relatively faster on
@@ -27,9 +27,9 @@ below.
 -   Orphadata: Free access data from Orphanet. © INSERM 1999. Available
     on <http://www.orphadata.org>. Data version (XML data version).
     Dataset (.xml file) from
-    <http://www.orphadata.org/cgi-bin/epidemio.html> Latest date of
-    update for the dataset: 14/6/2022 (last accessed 24/7/2022) Creative
-    Commons Attribution 4.0 International
+    <http://www.orphadata.org/cgi-bin/epidemio.html>. Latest date of
+    update for the dataset: 14/6/2022 (last accessed 24/7/2022).
+    Creative Commons Attribution 4.0 International
 
 ``` r
 df <- read_csv("rare_disease_phenotypes.csv")
@@ -162,8 +162,8 @@ For “Malformation syndrome”, this was defined as, “A disorder resulting
 from a developmental anomaly involving more than one morphogenetic
 field. Malformative sequences and associations are included.”
 
-Reference: “Orphadata: Free access products description” - April 2020
-<http://www.orphadata.org/cgi-bin/img/PDF/OrphadataFreeAccessProductsDescription.pdf>
+Reference: “Orphadata: Free access products description” - April 2020.
+<http://www.orphadata.org/cgi-bin/img/PDF/OrphadataFreeAccessProductsDescription.pdf>.
 Version 2
 
 To demonstrate this in a tabular form, with corresponding proportions of

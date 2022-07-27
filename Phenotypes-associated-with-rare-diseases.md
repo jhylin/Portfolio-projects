@@ -10,7 +10,7 @@ library(ggplot2)
 library(knitr)
 ```
 
-### Initial data wrangling
+#### Initial data wrangling
 
 This dataset was also derived and downloaded from Orphanet, as another
 part in the “rare diseases” series. It contained 37 columns with 112,243
@@ -29,7 +29,7 @@ below.
     Dataset (.xml file) from
     <http://www.orphadata.org/cgi-bin/epidemio.html>. Latest date of
     update for the dataset: 14/6/2022 (last accessed 24/7/2022).
-    Creative Commons Attribution 4.0 International
+    Creative Commons Attribution 4.0 International.
 
 ``` r
 df <- read_csv("rare_disease_phenotypes.csv")

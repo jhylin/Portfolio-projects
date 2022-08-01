@@ -36,9 +36,9 @@ df <- read_csv("rare_disease_phenotypes.csv")
 ```
 
     ## Rows: 112243 Columns: 13
-    ## ── Column specification ────────────────────────────────────────────────────────────────────────────
+    ## ── Column specification ────────────────────────────────────────────────────────────────
     ## Delimiter: ","
-    ## chr  (10): Disorder group, Disorder type, Diagnostic criteria, HPO frequency, HPO ID, Preferred ...
+    ## chr  (10): Disorder group, Disorder type, Diagnostic criteria, HPO frequency, HPO ID...
     ## dbl   (2): HPO disorder & clinical entity association count, Disorder Orphacode
     ## dttm  (1): Validation date
     ## 
@@ -278,18 +278,18 @@ df2 %>% arrange(desc(n))
 ```
 
     ## # A tibble: 239 × 2
-    ##    `Disorder name`                                                                       n
-    ##    <chr>                                                                             <int>
-    ##  1 Autosomal recessive complex spastic paraplegia due to Kennedy pathway dysfunction    10
-    ##  2 STT3A-CDG                                                                             9
-    ##  3 STT3B-CDG                                                                             9
-    ##  4 Spastic paraplegia-Paget disease of bone syndrome                                     8
-    ##  5 Oculocutaneous albinism type 5                                                        7
-    ##  6 PLIN1-related familial partial lipodystrophy                                          7
-    ##  7 Plummer-Vinson syndrome                                                               5
-    ##  8 SSR4-CDG                                                                              5
-    ##  9 Cholesterol-ester transfer protein deficiency                                         4
-    ## 10 Isolated follicle stimulating hormone deficiency                                      4
+    ##    `Disorder name`                                                                     n
+    ##    <chr>                                                                           <int>
+    ##  1 Autosomal recessive complex spastic paraplegia due to Kennedy pathway dysfunct…    10
+    ##  2 STT3A-CDG                                                                           9
+    ##  3 STT3B-CDG                                                                           9
+    ##  4 Spastic paraplegia-Paget disease of bone syndrome                                   8
+    ##  5 Oculocutaneous albinism type 5                                                      7
+    ##  6 PLIN1-related familial partial lipodystrophy                                        7
+    ##  7 Plummer-Vinson syndrome                                                             5
+    ##  8 SSR4-CDG                                                                            5
+    ##  9 Cholesterol-ester transfer protein deficiency                                       4
+    ## 10 Isolated follicle stimulating hormone deficiency                                    4
     ## # … with 229 more rows
     ## # ℹ Use `print(n = ...)` to see more rows
 
@@ -369,18 +369,18 @@ df3 %>% arrange(desc(n))
 ```
 
     ## # A tibble: 40 × 2
-    ##    `Disorder name`                                                                          n
-    ##    <chr>                                                                                <int>
-    ##  1 Hydrocephalus-obesity-hypogonadism syndrome                                             12
-    ##  2 Pelviscapular dysplasia                                                                 11
-    ##  3 46,XX disorder of sex development-skeletal anomalies syndrome                            9
-    ##  4 X-linked microcephaly-growth retardation-prognathism-cryptorchidism syndrome             9
-    ##  5 Severe intellectual disability-hypotonia-strabismus-coarse face-planovalgus syndrome     7
-    ##  6 Lethal recessive chondrodysplasia                                                        6
-    ##  7 Weaver-Williams syndrome                                                                 6
-    ##  8 SERKAL syndrome                                                                          5
-    ##  9 Patent ductus arteriosus-bicuspid aortic valve-hand anomalies syndrome                   4
-    ## 10 46,XX gonadal dysgenesis                                                                 3
+    ##    `Disorder name`                                                                     n
+    ##    <chr>                                                                           <int>
+    ##  1 Hydrocephalus-obesity-hypogonadism syndrome                                        12
+    ##  2 Pelviscapular dysplasia                                                            11
+    ##  3 46,XX disorder of sex development-skeletal anomalies syndrome                       9
+    ##  4 X-linked microcephaly-growth retardation-prognathism-cryptorchidism syndrome        9
+    ##  5 Severe intellectual disability-hypotonia-strabismus-coarse face-planovalgus sy…     7
+    ##  6 Lethal recessive chondrodysplasia                                                   6
+    ##  7 Weaver-Williams syndrome                                                            6
+    ##  8 SERKAL syndrome                                                                     5
+    ##  9 Patent ductus arteriosus-bicuspid aortic valve-hand anomalies syndrome              4
+    ## 10 46,XX gonadal dysgenesis                                                            3
     ## # … with 30 more rows
     ## # ℹ Use `print(n = ...)` to see more rows
 

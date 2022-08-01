@@ -4,7 +4,7 @@ This repository contains different healthcare and pharmaceutical-related project
 All of the projects were done by using Python (via Anaconda), SQL (via DBeaver on MySQL server), and R (via RStudio), which is another programming language I've derived recently.
 
 
-### Completed projects:
+#### Completed projects:
 #### Drugs in rare disease
 Blog post [link](https://jhylinportfolio.wordpress.com/portfolio/python-project-rare-disease-drugs/) for background information
 - Python (Rare disease drugs - approved only.ipynb)
@@ -20,7 +20,7 @@ Blog post [link](https://jhylinportfolio.wordpress.com/portfolio/python-project-
 
 ---
 
-### Project still being done:
+#### Project still being done:
 #### Phenotypes associated with rare diseases
 Three files present for now:
 * .ipynb file shows the initial data cleaning using Python
@@ -30,7 +30,7 @@ Three files present for now:
 
 ---
 
-### Future planned projects:
+#### Future planned projects:
 #### COVID-19 antivirals in phase 3 clinical trials
 * Initial data collected from ClinicalTrials.gov
 

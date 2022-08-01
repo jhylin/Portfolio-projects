@@ -36,9 +36,9 @@ df <- read_csv("rare_disease_phenotypes.csv")
 ```
 
     ## Rows: 112243 Columns: 13
-    ## ── Column specification ────────────────────────────────────────────────────────────────────────
+    ## ── Column specification ────────────────────────────────────────────────────────────────────────────
     ## Delimiter: ","
-    ## chr  (10): Disorder group, Disorder type, Diagnostic criteria, HPO frequency, HPO ID, Prefer...
+    ## chr  (10): Disorder group, Disorder type, Diagnostic criteria, HPO frequency, HPO ID, Preferred ...
     ## dbl   (2): HPO disorder & clinical entity association count, Disorder Orphacode
     ## dttm  (1): Validation date
     ## 
@@ -272,7 +272,8 @@ to the number of preferred HPO phenotype terms of each of these disorder
 types.
 
 ``` r
-df2 <- df_freq_ob %>% count(`Disorder name`)
+df2 <- df_freq_ob %>% 
+  count(`Disorder name`) 
 df2 %>% arrange(desc(n))
 ```
 
@@ -328,5 +329,83 @@ particular rare disease of interest to find out specific phenotype or
 clinical features, along with associated HPO phenotype frequency, for
 further investigations.
 
-For “Malformation syndrome” - let’s look into associated phenotypes for
-it… *to be continued*
+For “Malformation syndrome”, a similar search process was used to find
+out what was the most common phenotypes associated with it.
+
+``` r
+df_freq_ma <- df %>% 
+  filter(`Disorder type` == "Malformation syndrome", `HPO frequency` == "Obligate (100%)") %>%
+  select(`Disorder type`, `HPO frequency`, `Disorder name`)
+df_freq_ma
+```
+
+    ## # A tibble: 125 × 3
+    ##    `Disorder type`       `HPO frequency` `Disorder name`                  
+    ##    <chr>                 <chr>           <chr>                            
+    ##  1 Malformation syndrome Obligate (100%) CLAPO syndrome                   
+    ##  2 Malformation syndrome Obligate (100%) CLAPO syndrome                   
+    ##  3 Malformation syndrome Obligate (100%) Weaver-Williams syndrome         
+    ##  4 Malformation syndrome Obligate (100%) Weaver-Williams syndrome         
+    ##  5 Malformation syndrome Obligate (100%) Weaver-Williams syndrome         
+    ##  6 Malformation syndrome Obligate (100%) Weaver-Williams syndrome         
+    ##  7 Malformation syndrome Obligate (100%) Weaver-Williams syndrome         
+    ##  8 Malformation syndrome Obligate (100%) Weaver-Williams syndrome         
+    ##  9 Malformation syndrome Obligate (100%) Lethal recessive chondrodysplasia
+    ## 10 Malformation syndrome Obligate (100%) Lethal recessive chondrodysplasia
+    ## # … with 115 more rows
+    ## # ℹ Use `print(n = ...)` to see more rows
+
+``` r
+#kable(df_freq_ma)
+```
+
+Count() was used to find out the number of appearance of each disorder
+name in descending order.
+
+``` r
+df3 <- df_freq_ma %>% 
+  count(`Disorder name`)
+df3 %>% arrange(desc(n))
+```
+
+    ## # A tibble: 40 × 2
+    ##    `Disorder name`                                                                          n
+    ##    <chr>                                                                                <int>
+    ##  1 Hydrocephalus-obesity-hypogonadism syndrome                                             12
+    ##  2 Pelviscapular dysplasia                                                                 11
+    ##  3 46,XX disorder of sex development-skeletal anomalies syndrome                            9
+    ##  4 X-linked microcephaly-growth retardation-prognathism-cryptorchidism syndrome             9
+    ##  5 Severe intellectual disability-hypotonia-strabismus-coarse face-planovalgus syndrome     7
+    ##  6 Lethal recessive chondrodysplasia                                                        6
+    ##  7 Weaver-Williams syndrome                                                                 6
+    ##  8 SERKAL syndrome                                                                          5
+    ##  9 Patent ductus arteriosus-bicuspid aortic valve-hand anomalies syndrome                   4
+    ## 10 46,XX gonadal dysgenesis                                                                 3
+    ## # … with 30 more rows
+    ## # ℹ Use `print(n = ...)` to see more rows
+
+To show one of the examples of the most common malformation syndrome
+with the most associated phenotypic features (with a total of 12
+different phenotypic descriptions):
+
+``` r
+df_mal_syn <- df %>%
+  filter(`Disorder type` == "Malformation syndrome", `HPO frequency` == "Obligate (100%)", `Disorder name` == "Hydrocephalus-obesity-hypogonadism syndrome") %>% 
+  select(`Disorder type`, `HPO frequency`, `Disorder name`, `Preferred HPO term`)
+kable(df_mal_syn)
+```
+
+| Disorder type         | HPO frequency   | Disorder name                               | Preferred HPO term             |
+|:----------------------|:----------------|:--------------------------------------------|:-------------------------------|
+| Malformation syndrome | Obligate (100%) | Hydrocephalus-obesity-hypogonadism syndrome | Hydrocephalus                  |
+| Malformation syndrome | Obligate (100%) | Hydrocephalus-obesity-hypogonadism syndrome | Short neck                     |
+| Malformation syndrome | Obligate (100%) | Hydrocephalus-obesity-hypogonadism syndrome | Gynecomastia                   |
+| Malformation syndrome | Obligate (100%) | Hydrocephalus-obesity-hypogonadism syndrome | Hypergonadotropic hypogonadism |
+| Malformation syndrome | Obligate (100%) | Hydrocephalus-obesity-hypogonadism syndrome | Intellectual disability, mild  |
+| Malformation syndrome | Obligate (100%) | Hydrocephalus-obesity-hypogonadism syndrome | Obesity                        |
+| Malformation syndrome | Obligate (100%) | Hydrocephalus-obesity-hypogonadism syndrome | Mitral valve prolapse          |
+| Malformation syndrome | Obligate (100%) | Hydrocephalus-obesity-hypogonadism syndrome | Low posterior hairline         |
+| Malformation syndrome | Obligate (100%) | Hydrocephalus-obesity-hypogonadism syndrome | High, narrow palate            |
+| Malformation syndrome | Obligate (100%) | Hydrocephalus-obesity-hypogonadism syndrome | Cubitus valgus                 |
+| Malformation syndrome | Obligate (100%) | Hydrocephalus-obesity-hypogonadism syndrome | Short stature                  |
+| Malformation syndrome | Obligate (100%) | Hydrocephalus-obesity-hypogonadism syndrome | Short 4th metacarpal           |

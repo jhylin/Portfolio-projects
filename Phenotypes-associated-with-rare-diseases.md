@@ -493,7 +493,7 @@ df_val_date_d %>%
     ## Warning: Removed 49 rows containing non-finite
     ## values (stat_count).
 
-![](Phenotypes-associated-with-rare-diseases_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
+![](Phenotypes-associated-with-rare-diseases_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 It was also worth noting that there were 49 rows of non-finite values
 excluded from the bar graph above. To look into this, a count on the
 year column of the dataframe df_val_date_d was done, which confirmed
@@ -519,8 +519,11 @@ df_val_date_d %>%
 
 #### Summary
 
--   Autosomal recessive complex spastic paraplegia due to Kennedy
-    pathway dysfunction was one of the most common rare diseases under
+To quickly summarise key findings from this work<sup>1</sup> regarding
+phenotypes associated with rare diseases:
+
+-   **Autosomal recessive complex spastic paraplegia due to Kennedy
+    pathway dysfunction** was one of the most common rare diseases under
     the Disease disorder type with the most phenotypic abnormalities
     recorded, which were:
 
@@ -536,9 +539,9 @@ df_val_date_d %>%
 10. progressive spastic paraparesis
 
 -   For malformation syndrome of the rare disorder type,
-    Hydrocephalus-obesity-hypogonadism syndrome was found to be one of
-    the most common rare diseases with the most phenotypic abnormalities
-    recorded, which were:
+    **Hydrocephalus-obesity-hypogonadism syndrome** was found to be one
+    of the most common rare diseases with the most phenotypic
+    abnormalities recorded, which were:
 
 1.  hydrocephalus
 2.  short neck
@@ -554,5 +557,13 @@ df_val_date_d %>%
 12. short 4th metacarpal
 
 -   The year of 2016 had the highest number of HPO terms or phenotypic
-    abnormalities annotated to rare disorders from specific source
-    articles in this particular dataset
+    abnormalities annotated to rare disorders from specific named source
+    articles, and on the contrary, 2015 had the lowest counts from the
+    dataset
+
+Footnote: 1. *It’s possible to dig further into the dataset
+e.g. diagnostic criterion and perhaps even bring back some of the
+columns removed initially, however due to time constraints (due to being
+a one-person team and also I’d like to start on the COVID-19 antiviral
+work soon), I’ll leave some room here for the interested to work on the
+data*

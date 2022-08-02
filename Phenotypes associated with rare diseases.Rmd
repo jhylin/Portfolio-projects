@@ -125,7 +125,6 @@ df_freq_ma <- df %>%
   filter(`Disorder type` == "Malformation syndrome", `HPO frequency` == "Obligate (100%)") %>%
   select(`Disorder type`, `HPO frequency`, `Disorder name`)
 df_freq_ma
-#kable(df_freq_ma)
 ```
 Count() was used to find out the number of appearance of each disorder name in descending order.
 ```{r}
@@ -197,5 +196,5 @@ To quickly summarise key findings from this work^1^ regarding phenotypes associa
 
 * The year of 2016 had the highest number of HPO terms or phenotypic abnormalities annotated to rare disorders from specific named source articles, and on the contrary, 2015 had the lowest counts from the dataset
 
-Footnote: 
+##### Footnote: 
 1. *It's possible to dig further into the dataset e.g. diagnostic criterion and perhaps even bring back some of the columns removed initially, however due to time constraints (due to being a one-person team and also I'd like to start on the COVID-19 antiviral work soon), I'll leave some room here for the interested to work on the data*

@@ -360,10 +360,6 @@ df_freq_ma
     ## #   ²​`Disorder name`
     ## # ℹ Use `print(n = ...)` to see more rows
 
-``` r
-#kable(df_freq_ma)
-```
-
 Count() was used to find out the number of appearance of each disorder
 name in descending order.
 
@@ -561,9 +557,11 @@ phenotypes associated with rare diseases:
     articles, and on the contrary, 2015 had the lowest counts from the
     dataset
 
-Footnote: 1. *It’s possible to dig further into the dataset
-e.g. diagnostic criterion and perhaps even bring back some of the
-columns removed initially, however due to time constraints (due to being
-a one-person team and also I’d like to start on the COVID-19 antiviral
-work soon), I’ll leave some room here for the interested to work on the
-data*
+##### Footnote:
+
+1.  *It’s possible to dig further into the dataset e.g. diagnostic
+    criterion and perhaps even bring back some of the columns removed
+    initially, however due to time constraints (due to being a
+    one-person team and also I’d like to start on the COVID-19 antiviral
+    work soon), I’ll leave some room here for the interested to work on
+    the data*

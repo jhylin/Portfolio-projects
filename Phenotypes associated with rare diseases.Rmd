@@ -17,7 +17,7 @@ library(knitr)
 ```
 
 #### Initial data wrangling 
-This dataset was also derived and downloaded from Orphanet, as another part in the "rare diseases" series. It contained 37 columns with 112,243 rows originally, which took quite a long time to load on RStudio (or could be due to my laptop capacity...). It loaded relatively faster on Jupyter notebook from Anaconda, so I then decided to clean it up first using Python there. Some columns were removed which reduced the total number of columns from 37 to 13, while not changing any of the rows at all. The columns were also renamed to make it easier to read as shown below.
+This dataset was also derived and downloaded from Orphanet, as another part in the "rare diseases" series. It contained 37 columns with 112,243 rows originally, which took quite a long time to load on RStudio (or could be due to my laptop capacity...). It loaded relatively faster on Jupyter notebook from Anaconda, so I then decided to clean it up first using Python there. Some columns were removed which reduced the total number of columns from 37 to 13, while not changing any of the rows at all. The columns were also renamed to make it easier to read.
 
 #### Source of dataset
 * Orphadata: Free access data from Orphanet. 
@@ -40,9 +40,9 @@ spec(df)
 df %>% View()
 ```
 #### Exploratory data analysis
-Since I wasn't intending for this project to be extremely long (as most people would likely lose interests by then), I'd like to first ask a question about the data set, in order to keep it at a reasonably short but informative length. So here's the question: what are the most common rare disorders and their associated phenotypic features?
+Since I wasn't intending for this project to be extremely long (as most people would likely lose interests by then), I'd like to first ask a question about the dataset, in order to keep it at a reasonably short but informative length. So, here's the question: what are the most common rare disorders and their associated phenotypic features?
 
-So to answer it, let's observe the spread of the disorder groups and types by formulating a contingency table first.
+To answer it, let's observe the spread of the disorder groups and types first by formulating a contingency table.
 ```{r message = FALSE}
 df_type <- df %>% 
   group_by(`Disorder group`,`Disorder type`) %>% 
@@ -102,7 +102,7 @@ df_freq_ob <- df %>%
   select(`Disorder type`, `HPO frequency`, `Disorder name`)
 df_freq_ob
 ```
-I'd then like to look into associated counts of appearance of each disorder name. When I cross-checked with the full dataset in table view, I've noted that the number of appearance of each disorder name is linked to the number of preferred HPO phenotype terms of each of these disorder types. 
+I'd then like to look into associated counts of appearance of each disorder name. When I cross-checked with the full dataset in table view, I've noted that the number of appearance of each disorder name is linked to the number of preferred HPO phenotype terms for each of these disorder types. 
 ```{r}
 df2 <- df_freq_ob %>% 
   count(`Disorder name`) 
@@ -140,3 +140,57 @@ df_mal_syn <- df %>%
   select(`Disorder type`, `HPO frequency`, `Disorder name`, `Preferred HPO term`)
 kable(df_mal_syn)
 ```
+Now, to add one more piece of work towards this exploratory data analysis, I thought to check out the Validation date column. "Validation date" in this context meant the dates when the annotations of HPO terms were made for each rare disorder, which were based on the source articles listed (as shown in the Source column).
+
+Firstly, I started with the "Disease" disorder type and singled out the year component from the Validation date column.
+```{r}
+df_val_date <- df %>% 
+  mutate(year = year(`Validation date`), label = TRUE, abbr = FALSE)
+df_val_date
+```
+To show this in a dataframe, observations for "Disease" disorder type were shown by using a filter:
+```{r}
+df_val_date_d <- df_val_date %>% 
+  select(`Disorder type`, year) %>% 
+  filter(`Disorder type` == "Disease")
+df_val_date_d
+```
+Then to make it easier to visualise, the year counts were plotted in a bar graph. Interestingly, 2016 seemed to be the year for rare disorders to be annotated with the most phenotypic features (if referring back to the original dataset, each observation or row was present for a unique "Preferred HPO term" or phenotypic abnormality).
+```{r}
+df_val_date_d %>% 
+  ggplot(aes(x = year)) +
+  geom_bar()
+```
+It was also worth noting that there were 49 rows of non-finite values excluded from the bar graph above. To look into this, a count on the year column of the dataframe df_val_date_d was done, which confirmed that these were the "NA" or missing values in the validation date column.
+```{r}
+df_val_date_d %>% 
+  count(year)
+```
+#### Summary
+* Autosomal recessive complex spastic paraplegia due to Kennedy pathway dysfunction was one of the most common rare diseases under the Disease disorder type with the most phenotypic abnormalities recorded, which were: 
+1. progressive spastic paraplegia 
+2. microcephaly 
+3. moderately short stature
+4. nasal, dysarthic speech 
+5. delayed gross motor development 
+6. progressive spasticity 
+7. lower limb hyperreflexia 
+8. ankle clonus
+9. retinal pigment epithelial mottling
+10. progressive spastic paraparesis
+
+* For malformation syndrome of the rare disorder type, Hydrocephalus-obesity-hypogonadism syndrome was found to be one of the most common rare diseases with the most phenotypic abnormalities recorded, which were:
+1. hydrocephalus
+2. short neck
+3. gynecomastia
+4. hypergonadotropic hypogonadism
+5. intellectual disability, mild
+6. obesity
+7. mitral valve prolapse
+8. low posterior hairline
+9. high, narrow palate
+10. cubitus valgus
+11. short stature
+12. short 4th metacarpal
+
+* The year of 2016 had the highest number of HPO terms or phenotypic abnormalities annotated to rare disorders from specific source articles in this particular dataset

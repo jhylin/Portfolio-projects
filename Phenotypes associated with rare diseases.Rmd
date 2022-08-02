@@ -160,6 +160,7 @@ df_val_date_d %>%
   ggplot(aes(x = year)) +
   geom_bar()
 ```
+
 It was also worth noting that there were 49 rows of non-finite values excluded from the bar graph above. To look into this, a count on the year column of the dataframe df_val_date_d was done, which confirmed that these were the "NA" or missing values in the validation date column.
 ```{r}
 df_val_date_d %>% 

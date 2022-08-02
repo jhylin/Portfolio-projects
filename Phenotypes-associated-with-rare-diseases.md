@@ -490,6 +490,7 @@ df_val_date_d %>%
     ## values (stat_count).
 
 ![](Phenotypes-associated-with-rare-diseases_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+
 It was also worth noting that there were 49 rows of non-finite values
 excluded from the bar graph above. To look into this, a count on the
 year column of the dataframe df_val_date_d was done, which confirmed

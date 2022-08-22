@@ -29,8 +29,9 @@ Four files present:
 
 #### Project in the pipeline:
 #### Long COVID syndromes
-* Aim to look at recent data in 2022
-* Data searching stage
+* Aim to look at recent data in 2022 (previous work in SQL and Tableau were based on data from 2021)
+* Plan to use R mainly in data analysis
+* Data searching stage currently
 
 ---
 

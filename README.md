@@ -28,8 +28,9 @@ Four files present:
 ---
 
 #### Project in the pipeline:
-#### COVID-19 antivirals in phase 3 clinical trials
-* Initial data collected from ClinicalTrials.gov
+#### Long COVID syndromes
+* Aim to look at recent data in 2022
+* Data searching stage
 
 ---
 

@@ -1,4 +1,7 @@
 # Portfolio-projects
+
+*All data analytics projects will be in my portfolio blog, [Data in life](https://jhylin.github.io/Data_in_life_blog/), as all newer projects will no longer be stored in this repository, but rather you can find them in my other repository, [Data_in_life_blog](https://github.com/jhylin/Data_in_life_blog)*
+
 This repository contains different healthcare and pharmaceutical-related projects from my personal interests, as I've come from a pharmacy background initially, followed by a few years of research (still not an expert yet), so naturally I still want to delve further into these fields by using data science and analytics tools.
 
 All of the projects were done by using Python (via Anaconda), SQL (via DBeaver on MySQL server), and R (via RStudio), which is another programming language I've derived recently.
@@ -27,12 +30,4 @@ Four files present:
 
 ---
 
-#### Project in the pipeline:
-#### Long COVID syndromes
-* Aim to look at recent data in 2022 (previous work in SQL and Tableau were based on data from 2021)
-* Plan to use R mainly in data analysis
-* Data searching stage currently
-
----
-
-If there are anything missed, incorrect or more information to be added, please visit my [portfolio blog](https://jhylin.github.io/Data-analytics-and-research-blog/) and leave a comment, many thanks.
+Please visit my [portfolio blog](https://jhylin.github.io/Data_in_life_blog/) if there are any questions or comments, many thanks.

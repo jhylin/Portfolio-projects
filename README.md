@@ -1,6 +1,6 @@
 # Portfolio-projects
 
-*All data analytics projects will be in my portfolio blog, [Data in life](https://jhylin.github.io/Data_in_life_blog/), as all newer projects will no longer be stored in this repository, but rather you can find them in my other repository, [Data_in_life_blog](https://github.com/jhylin/Data_in_life_blog)*
+***All data analytics projects will be in my portfolio blog, [Data in life](https://jhylin.github.io/Data_in_life_blog/), as all newer projects will no longer be stored in this repository, but rather you can find them in my other repository, [Data_in_life_blog](https://github.com/jhylin/Data_in_life_blog).***
 
 This repository contains different healthcare and pharmaceutical-related projects from my personal interests, as I've come from a pharmacy background initially, followed by a few years of research (still not an expert yet), so naturally I still want to delve further into these fields by using data science and analytics tools.
 
